@@ -1,0 +1,76 @@
+<h1>DIRETIVAS</h1>
+<h3>*NGIF funciona como um if e else</h3>
+<div *ngIf="cursos.length > 0">
+  <p>lista de cursos</p>
+</div>
+
+<div *ngIf="cursos.length == 0">
+  <p>não há cursos</p>
+</div>
+
+<div [hidden]="!mostrarCursos">
+  <p>lista de cursos</p>
+</div>
+
+<div [hidden]="mostrarCursos">
+  <p>não há cursos</p>
+</div>
+
+<button (click)="onMostrarCursos()">Mostra ou Esconder</button>
+
+<h3>[NGSWITCH] / *NGSWITCHCASE funciona como o switch case</h3>
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="#">Navbar</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+    <div class="navbar-nav">
+      <a class="nav-item nav-link" href="#" [class.active]="aba=='home'" (click)="aba='home'">Home <span class="sr-only">(current)</span></a>
+      <a class="nav-item nav-link" href="#" [class.active]="aba=='features'" (click)="aba='features'">Features</a>
+      <a class="nav-item nav-link" href="#" [class.active]="aba=='pricing'" (click)="aba='pricing'">Pricing</a>
+    </div>
+  </div>
+</nav>
+
+<div class="container" [ngSwitch]="aba">
+  <p *ngSwitchCase ="'home'">Modo Home Ativado</p>
+  <p *ngSwitchCase ="'features'">Modo Features Ativado</p>
+  <p *ngSwitchCase ="'pricing'">Modo Princing Ativado</p>
+</div>
+
+<h3>NGFOR funciona como um for, iterando um array</h3>
+<ul>
+  <li *ngFor="let curso of cursos, let i = index">
+    {{ i + 1 }} - {{ curso }}
+  </li>
+
+</ul>
+
+<h3>NGCLASS para adicionar ou retirar classes, da mesma fora que o class binding</h3>
+
+<h1> 
+<i class="bi" 
+[class.bi-0-circle]="!meuFavorito"
+[class.bi-0-circle-fill]="meuFavorito"
+(click)="onClick()"></i>
+</h1>
+
+<h1>
+<i class="bi" 
+[ngClass]="{
+  'bi-0-circle' : !meuFavorito,
+  'bi-0-circle-fill' : meuFavorito
+}"
+(click)="onClick()"></i>
+</h1>
+
+<h3>NGSTYLE para adicionar ou retirar estilos, da mesma fora que o style binding</h3>
+
+<button [ngStyle]="{
+'backgroundColor': (ativo ? 'blue' : 'gray'),
+'color': (ativo ? 'white' : 'black'),
+'fontWeight': (ativo ? 'bold' : 'normal'),
+}"
+(click)="mudarAtivo()">APERTE</button>

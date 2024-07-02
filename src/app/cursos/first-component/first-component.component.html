@@ -1,0 +1,8 @@
+<section>
+  <h3>INPUT VALUE</h3>
+  <div>
+    <input type="text" [value]="name" (input)="name = valorInput.value" (keyup.enter)="valorSalvo = valorInput.value" #valorInput>
+    <p>o valor do Input é: {{ name }}</p>
+    <p>o valor Salvo é: {{ valorSalvo }}</p>
+  </div>
+</section>
